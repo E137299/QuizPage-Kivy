@@ -1,0 +1,113 @@
+<QuizManager>:
+    Question1Screen:
+        name: "question one"
+    Question2Screen:
+        name: "question two"
+    CorrectScreen:
+        name: "correct"
+    IncorrectScreen:
+        name: "incorrect"
+
+
+<Question1Screen>:
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: "What is the state fruit of Texas?"
+            font_size: 40
+        BoxLayout:
+            size_hint: 1,.3
+            spacing: 7
+            padding: "5dp"
+            Button:
+                text: "Peach"
+                color: "white"
+                background_color: "black"
+                padding: 10, 10, 10, 10
+                font_size: 40
+                border: (10,10,10,10)
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1  # Set the border color (red in this case)
+                    Line:
+                        width: 2  # Set the border width
+                        rectangle: self.x, self.y, self.width, self.height
+                on_release: root.answer_question(False)
+            Button:
+                text: "Grapefruit"
+                on_release: root.answer_question(True)
+                color: "white"
+                background_color: "black"
+                font_size: 40
+                border: (10,10,10,10)
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1  # Set the border color (red in this case)
+                    Line:
+                        width: 2  # Set the border width
+                        rectangle: self.x, self.y, self.width, self.height
+            Button:
+                text: "Orange"
+                on_release: root.answer_question(False)
+                color: "white"
+                background_color: "black"
+                font_size: 40
+                border: (10,10,10,10)
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1  # Set the border color (red in this case)
+                    Line:
+                        width: 2  # Set the border width
+                        rectangle: self.x, self.y, self.width, self.height
+
+<Question2Screen>:
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 10
+        Label:
+            text: "Complete the song lyric:\n\nThe stars at night are big and bright, \n___________________________________."
+        TextInput:
+            id: answer
+            size_hint: .5, .1
+            pos_hint: {"center_x":0.5}
+        Button:
+            text: "Enter"
+            size_hint: .5, .1
+            pos_hint: {"center_x":0.5}
+            on_release: root.answer_question(answer.text)
+        Label:
+            id: test
+            text: ""
+
+
+<CorrectScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: "CORRECT"
+            color: 255, 87, 51
+            font_size: 100
+        Button:
+            text: ">> ADVANCE >>"
+            on_press:
+            font_size: 50
+            background_color: "black"
+            size_hint: 0.6,.3
+            pos_hint: {"center_x": 0.5}
+            on_release: root.advance()
+
+
+<IncorrectScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: "WRONG"
+            color: 255, 87, 51
+            font_size: 100
+        Button:
+            text: ">> ADVANCE >>"
+            font_size: 50
+            background_color: "black"
+            size_hint: 0.6,.3
+            pos_hint: {"center_x": 0.5}
+            on_release: root.advance()
